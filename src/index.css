@@ -1,14 +1,142 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.top{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
+.heading{
+  padding: 20px;
+  font-weight: 700;
+  text-decoration: bold;
+  font-size: 25px;
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+}
+
+.sub_heading{
+  padding: 10px;
+  font-weight: 700;
+  text-decoration: bold;
+  font-size: 10px;
+  margin: 0 auto;
+  color: white;
+}
+
+.background{
+  position: relative;
+  top:-5vw;
+  width: 100vw;
+  height: 30vh;
+  border-radius: 0  0 5vw 5vw;
+  background: #512DA8;
+}
+
+.search_bar{
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: -40px;
+
+}
+
+.search_bar input{
+  width: 40vw;
+  padding: 10px 0 10px 20px;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 1px 1px 20px 0px black;
+  border: none;
+  font-size: 8px;
+}
+
+.search_bar button{
+  position: relative;
+  left: -6px;
+  width: 15vw;
+  padding: 10px;
+  background: #607D8B;
+  border-radius: 0 5px 5px 0 ;
+  box-shadow: 6px 1px 20px 0px black;
+  border: none;
+}
+
+.search_bar button img{
+  width:5vw;
+}
+
+.mutual_fund{
+  margin-top: 50px;
+}
+
+.accordion{
+  position: relative;
+  width: 90vw;
+  margin: 0 auto;   
+}
+
+.accordion__title{
+  width: auto;
+}
+
+.accordion .accordion{;
+  width: 80vw;
+}
+
+.accordion .accordion .accordion__title{
+  width: auto;
+}
+
+.Loading{
+  margin-left: 30px;
+}
+
+@media screen and (min-width: 500px){
+  .background{
+    height: 30vw;
+  }
+  .search_bar{
+    margin-top: -60px;
+  }
+  
+  .search_bar input{
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 992px){
+  .heading{
+    padding-top: 40px;
+    font-size: 40px;
+  }
+  .sub_heading{
+    font-size: 20px;
+  }
+  .background{
+    height: 43vh;
+  }
+  .search_bar{
+    margin-top: -120px;
+  }
+  .search_bar input{
+    font-size: 20px;
+  }
+
+.accordion .accordion{;
+  width: 85vw;
+  }
+
+}
+

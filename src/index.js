@@ -1,12 +1,173 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Get, Post} from 'react-axios';
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemTitle,
+    AccordionItemBody,
+} from 'react-accessible-accordion';
+
+import 'react-accessible-accordion/dist/fancy-example.css';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function Example(props)  {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  return(
+    <div>
+    <Get url="https://api.piggy.co.in/v1/mf/" params={{key: props.value["scheme_key"]}}>
+        {(error, response, isLoading, onReload) => {
+          if(error) {
+            return (<div></div>)
+          }
+          else if(isLoading) {
+            return (<div></div>)
+          }
+          else if(response !== null) {
+            var detailed_props = response;
+            return (<Accordion className="accordion">
+        <AccordionItem>
+            <AccordionItemTitle>
+                <h3>{props.value["name"]}</h3>
+                <p>Category : {props.value["category"]}</p>
+            </AccordionItemTitle>
+            <AccordionItemBody>
+            <Accordion className="accordion">
+                <AccordionItem>
+                  <AccordionItemTitle>
+                    <h4>Riskometer</h4>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <p>{props.value["riskometer"]}</p>
+                </AccordionItemBody>
+                </AccordionItem>
+            <AccordionItem>
+                  <AccordionItemTitle>
+                    <h4>Minimum Subscription</h4>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <p>{detailed_props.data.data.mutual_fund["details"]["minimum_subscription"]}</p>
+                </AccordionItemBody>
+            </AccordionItem>
+            <AccordionItem>
+                  <AccordionItemTitle>
+                    <h4>Rating</h4>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <p>{props.value["rating"]}</p>
+                </AccordionItemBody>
+            </AccordionItem>
+            <AccordionItem>
+                  <AccordionItemTitle>
+                    <h4>Asset um</h4>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <p>{detailed_props.data.data.mutual_fund["details"]["asset_aum"]}</p>
+                </AccordionItemBody>
+            </AccordionItem>
+            <AccordionItem>
+                  <AccordionItemTitle>
+                    <h4>Return in 3yr</h4>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <p>{props.value["return_3yr"]}</p>
+                </AccordionItemBody>
+            </AccordionItem>
+            <AccordionItem>
+                  <AccordionItemTitle>
+                    <h4>Benchmark Text</h4>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <p>{detailed_props.data.data.mutual_fund["details"]["benchmark_text"]}</p>
+                </AccordionItemBody>
+            </AccordionItem>
+            </Accordion>
+        </AccordionItemBody>
+        </AccordionItem>
+        
+    </Accordion>)
+          }
+          return (<div>Default message before request is made.</div>)
+        }}
+      </Get>
+    
+    </div>
+);
+}
+
+
+class Game extends React.Component {
+  render() {
+    let data;
+    if(this.props.name === "")
+    data = {"search":this.props.name} 
+    else
+    data = {
+      "search":this.props.name,
+      "rows" : 2,
+      "offset" : 1
+    }  
+  return (
+    <div>
+      <Post url="https://api.piggy.co.in/v2/mf/search/" 
+      params={{
+        'authorization': "Token a41d2b39e3b47412504509bb5a1b66498fb1f43a",
+        'cache-control': "no-cache", 
+        'content-type': "application/json"
+      }} 
+      data={data}
+>
+        {(error, response, isLoading, onReload) => {
+          if(error) {
+            return (<div>Something bad happened: {error.message}</div>)
+          }
+          else if(isLoading) {
+            return (<div className="Loading">Loading...</div>)
+          }
+          else if(response !== null) {
+            return (response.data.data.search_results.map(stock =>  <Example value={stock}/>));
+          }
+          return (<div>Default message before request is made.</div>)
+        }}
+      </Post>
+    </div>
+  )
+}
+}
+
+class SearchBar extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      stockName : null,
+      showMutualFund : false,
+    }
+  }
+  
+
+  render(){
+    return (
+      <div>
+      <div className="search_bar">
+      <input type="text" name="searchbar" placeholder = "Enter the name of Mutual Fund" />
+      <button onClick = {()=>{
+        this.setState({stockName  : document.querySelector('input[name="searchbar"]').value,showMutualFund : true});
+      }}
+      >
+      <img src="image/search.png" alt="search icon"/>
+      </button>
+      </div>
+      { this.state.showMutualFund && 
+        <div className="mutual_fund">
+        <Game name = {this.state.stockName} />
+        </div>
+      }
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <SearchBar />,
+  document.getElementById('root')
+);
