@@ -32,57 +32,34 @@ function Example(props)  {
                 <p>Category : {props.value["category"]}</p>
             </AccordionItemTitle>
             <AccordionItemBody>
-            <Accordion className="accordion">
-                <AccordionItem>
-                  <AccordionItemTitle>
-                    <h4>Riskometer</h4>
-                </AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>{props.value["riskometer"]}</p>
-                </AccordionItemBody>
-                </AccordionItem>
-            <AccordionItem>
-                  <AccordionItemTitle>
-                    <h4>Minimum Subscription</h4>
-                </AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>{detailed_props.data.data.mutual_fund["details"]["minimum_subscription"]}</p>
-                </AccordionItemBody>
-            </AccordionItem>
-            <AccordionItem>
-                  <AccordionItemTitle>
-                    <h4>Rating</h4>
-                </AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>{props.value["rating"]}</p>
-                </AccordionItemBody>
-            </AccordionItem>
-            <AccordionItem>
-                  <AccordionItemTitle>
-                    <h4>Asset um</h4>
-                </AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>{detailed_props.data.data.mutual_fund["details"]["asset_aum"]}</p>
-                </AccordionItemBody>
-            </AccordionItem>
-            <AccordionItem>
-                  <AccordionItemTitle>
-                    <h4>Return in 3yr</h4>
-                </AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>{props.value["return_3yr"]}</p>
-                </AccordionItemBody>
-            </AccordionItem>
-            <AccordionItem>
-                  <AccordionItemTitle>
-                    <h4>Benchmark Text</h4>
-                </AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>{detailed_props.data.data.mutual_fund["details"]["benchmark_text"]}</p>
-                </AccordionItemBody>
-            </AccordionItem>
-            </Accordion>
-        </AccordionItemBody>
+            <div className="fund_detail">
+              <div>
+                <h4>Riskometer</h4>
+                <p>{props.value["riskometer"]}</p>
+              </div>
+              <div>
+                <h4>Rating</h4>
+                <p>{props.value["rating"]}</p>
+              </div>
+              <div>  
+                <h4>Asset um</h4>
+                <p>{detailed_props.data.data.mutual_fund["details"]["asset_aum"]}</p>
+              </div>
+              <div>  
+                <h4>Return in 3yr</h4>
+                <p>{props.value["return_3yr"]}</p>
+              </div>
+              <div>
+                <h4>Minimum Subscription</h4>
+                <p>{detailed_props.data.data.mutual_fund["details"]["minimum_subscription"]}</p>
+              </div>
+              <div>  
+                <h4>Benchmark Text</h4> 
+                <p>{detailed_props.data.data.mutual_fund["details"]["benchmark_text"]}</p>
+              </div>
+              </div>
+
+                  </AccordionItemBody>
         </AccordionItem>
         
     </Accordion>)

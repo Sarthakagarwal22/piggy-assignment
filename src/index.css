@@ -103,6 +103,18 @@ body {
   margin-left: 30px;
 }
 
+.fund_detail div{
+  margin: 10px;
+  padding: 10px;
+  text-align: center; 
+}
+
+.benchmark_text{
+  font-weight: 700;
+  text-decoration: bold;
+  font-size: 15px;
+}
+
 @media screen and (min-width: 500px){
   .background{
     height: 30vw;
@@ -110,9 +122,13 @@ body {
   .search_bar{
     margin-top: -60px;
   }
-  
   .search_bar input{
     font-size: 15px;
+  }
+  .fund_detail{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   }
 }
 
