@@ -1,6 +1,6 @@
 # piggy-assignment
 
-[Visit the assignment here](https://sarthakagarwal22.github.io/piggy-assignment/)
+[View project](https://sarthakagarwal22.github.io/piggy-assignment/)
 
 A react based web app that lets you search for any mutual fund. It returns some basic information about the mutual funds with the search keyword in their name. It is completely based on React and is fully responsive. 
 
